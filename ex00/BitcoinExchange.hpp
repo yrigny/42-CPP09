@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 21:37:52 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/29 18:14:11 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/11/29 23:43:39 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <map>
 # include <iostream>
 # include <cstdlib>
+# include <sstream>
 
 class BitcoinExchange
 {
