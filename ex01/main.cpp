@@ -6,12 +6,13 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 21:44:27 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/30 11:53:12 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/11/30 13:57:08 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <cstdlib>
+#include <cstring>
+#include <stdexcept>
 #include "RPN.hpp"
 
 int main(int ac, char **av)
@@ -27,12 +28,12 @@ int main(int ac, char **av)
 			}
 		}
 		std::string	str(av[1]);
-		RPN	rpn(str);
 		try
 		{
+			RPN	rpn(str);
 			rpn.calculate();
 		}
-		catch (std::exception& e)
+		catch (const std::exception& e)
 		{
 			std::cout << e.what() << std::endl;
 		}

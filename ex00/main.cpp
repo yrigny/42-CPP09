@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 21:35:27 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/30 00:57:36 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/11/30 13:59:00 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int main(int ac, char **av)
 					btc.calculateValue(line);
 				file.close();
 			}
-			catch (std::exception& e)
+			catch (const std::exception& e)
 			{
 				std::cerr << e.what() << std::endl;
 			}

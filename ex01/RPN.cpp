@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 21:44:08 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/30 12:03:49 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/11/30 14:06:13 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ void	RPN::calculate()
 		}
 		else if (strchr("+-*/", chr))
 		{
-			if (_deque.size() == 2)
+			if (_deque.size() < 2)
+				throw WrongFormatException();
+			else if (_deque.size() == 2)
 				operateFrontElements(chr);
 			else if (_deque.size() > 2)
 				operateBackElements(chr);
@@ -63,7 +65,7 @@ void	RPN::calculate()
 	if (_deque.size() == 1)
 		std::cout << _deque.front() << std::endl;
 	else
-		std::cout << "Error" << std::endl;
+		std::cout << "Error: extra number of operands" << std::endl;
 }
 
 void	RPN::operateFrontElements(char operation)
@@ -77,7 +79,7 @@ void	RPN::operateFrontElements(char operation)
 	else if (operation == '*')
 		_deque.front() *= num1;
 	else if (operation == '/' && _deque.front() == 0)
-		throw DividedByZeroException();
+		throw RPN::DividedByZeroException();
 	else
 		_deque.front() = num1 / _deque.front();
 }
@@ -93,7 +95,7 @@ void	RPN::operateBackElements(char operation)
 	else if (operation == '*')
 		_deque.back() *= num2;
 	else if (operation == '/' && num2 == 0)
-		throw DividedByZeroException();
+		throw RPN::DividedByZeroException();
 	else
 		_deque.back() /= num2;
 }
@@ -101,4 +103,9 @@ void	RPN::operateBackElements(char operation)
 const char*	RPN::DividedByZeroException::what() const throw()
 {
 	return "Error: division by 0";
+}
+
+const char*	RPN::WrongFormatException::what() const throw()
+{
+	return "Error: not enough number of operands";
 }
