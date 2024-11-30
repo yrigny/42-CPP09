@@ -6,14 +6,38 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 21:44:27 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/28 21:52:31 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/11/30 11:53:12 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <cstdlib>
 #include "RPN.hpp"
 
 int main(int ac, char **av)
 {
-
+	if (ac == 2 && av[1] != NULL)
+	{
+		for (size_t i = 0; i < strlen(av[1]); i++)
+		{
+			if (!strchr("0123456789 +-*/", av[1][i]))
+			{
+				std::cout << "Error" << std::endl;
+				return 0;
+			}
+		}
+		std::string	str(av[1]);
+		RPN	rpn(str);
+		try
+		{
+			rpn.calculate();
+		}
+		catch (std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+	}
+	else
+		std::cout << "Usage: ./RPN [expression]" << std::endl;
+	return 0;
 }
