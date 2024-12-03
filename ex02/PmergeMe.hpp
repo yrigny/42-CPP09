@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 21:53:01 by yrigny            #+#    #+#             */
-/*   Updated: 2024/12/03 19:00:54 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/12/03 19:08:32 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,34 @@ typedef std::list<pair>			lstPair;
 class PmergeMe
 {
 	private:
+	
 		vec		_vec;
 		int		_last;
 		vecPair	_vecOfPair;
+
+		void	formAscendingPairs();
+		vecPair	sortAscendingPairsVec(vecPair vecOfPair);
+		void	insertFirstBatchOfNum();
+		void	insertRestOfNum();
+		void	insertNumWithBinarySearch(uint num, uint iMax);
+
 		lst		_lst;
 		lstPair	_lstOfPair;
 
 	public:
+
 		PmergeMe();
 		PmergeMe(vec sequence);
 		PmergeMe(const PmergeMe& src);
 		~PmergeMe();
 		PmergeMe&	operator=(const PmergeMe& rhs);
-		void		printVec(size_t maxSize);
-		void		sortVec();
-		void		formAscendingPairs();
-		vecPair		sortAscendingPairsVec(vecPair vecOfPair);
-		void		insertFirstBatchOfNum();
-		void		insertRestOfNum();
-		void		insertNumWithBinarySearch(uint num, uint iMax);
-		void		printLst(size_t maxSize);
-		void		sortLst();
-		vec			getVec() const;
-		lst			getLst() const;
+
+		void	sortVec();
+		void	sortLst();
+		void	printVec(size_t maxSize);
+		void	printLst(size_t maxSize);
+		vec		getVec() const;
+		lst		getLst() const;
 };
 
 #endif
