@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 21:53:01 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/30 17:17:25 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/12/03 19:00:54 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <iostream>
 # include <list>
 # include <vector>
+# include <algorithm>
 
 typedef unsigned int			uint;
 typedef std::pair<uint, uint>	pair;
@@ -27,10 +28,9 @@ class PmergeMe
 {
 	private:
 		vec		_vec;
-		vec		_vec2;
+		int		_last;
 		vecPair	_vecOfPair;
 		lst		_lst;
-		lst		_lst2;
 		lstPair	_lstOfPair;
 
 	public:
@@ -41,7 +41,11 @@ class PmergeMe
 		PmergeMe&	operator=(const PmergeMe& rhs);
 		void		printVec(size_t maxSize);
 		void		sortVec();
-		void		sortPairVec();
+		void		formAscendingPairs();
+		vecPair		sortAscendingPairsVec(vecPair vecOfPair);
+		void		insertFirstBatchOfNum();
+		void		insertRestOfNum();
+		void		insertNumWithBinarySearch(uint num, uint iMax);
 		void		printLst(size_t maxSize);
 		void		sortLst();
 		vec			getVec() const;

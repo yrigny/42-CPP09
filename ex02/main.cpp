@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 21:54:23 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/30 16:03:05 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/12/03 17:57:06 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <sstream>
 #include <ctime>
 #include "PmergeMe.hpp"
-#define MAX_PRINT 10
+#define MAX_PRINT 15
 
 bool	isUint(std::string str)
 {
