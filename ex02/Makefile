@@ -2,7 +2,7 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp PmergeMe.cpp
+SRC = main.cpp PmergeMe.cpp Vec.cpp Lst.cpp
 
 INCLUDE = PmergeMe.hpp
 

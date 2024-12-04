@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 21:53:01 by yrigny            #+#    #+#             */
-/*   Updated: 2024/12/04 14:33:02 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/12/04 20:02:41 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,35 @@
 typedef unsigned int			uint;
 typedef std::pair<uint, uint>	pair;
 typedef std::vector<uint>		vec;
-typedef std::list<uint>			lst;
 typedef std::vector<pair>		vecPair;
+typedef std::list<uint>			lst;
 typedef std::list<pair>			lstPair;
+typedef lst::iterator			lstIt;
+typedef lstPair::iterator		lstPairIt;
 
 class PmergeMe
 {
 	private:
 	
 		vec		_vec;
-		int		_last;
+		uint	_lastVecElement;
 		vecPair	_vecOfPair;
 
 		void	formAscendingPairs();
-		vecPair	sortAscendingPairsVec(vecPair vecOfPair);
+		vecPair	sortAscendingPairs(vecPair vecOfPair);
 		void	insertFirstBatchOfNum();
 		void	insertRestOfNum();
 		void	insertNumWithBinarySearch(uint num, uint iMax);
 
 		lst		_lst;
+		uint	_lastLstElement;
 		lstPair	_lstOfPair;
+
+		void	formAscendingPairsLst();
+		lstPair	sortAscendingPairsLst(lstPair lstOfPair);
+		// void	insertFirstBatchOfNumToLst();
+		// void	insertRestOfNumToLst();
+		// void	insertNumToLstWithBinarySearch(uint num, uint iMax);
 
 	public:
 
@@ -49,13 +58,12 @@ class PmergeMe
 		PmergeMe(const PmergeMe& src);
 		~PmergeMe();
 		PmergeMe&	operator=(const PmergeMe& rhs);
-
-		void	sortVec();
-		void	sortLst();
-		void	printVec(size_t maxSize);
-		void	printLst(size_t maxSize);
+		void		sortVec();
+		void		sortLst();
 		const vec&	getVec();
 		const lst&	getLst();
+		void		printVec(size_t maxSize);
+		void		printLst(size_t maxSize);
 };
 
 #endif

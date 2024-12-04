@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 21:54:23 by yrigny            #+#    #+#             */
-/*   Updated: 2024/12/04 14:42:37 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/12/04 18:42:10 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	sort(PmergeMe &pm)
 	start = std::clock();
 	pm.sortVec();
 	end = std::clock();
-	durationUs = 1e6 * (end - start) / (double) CLOCKS_PER_SEC;
+	durationUs = end - start;
 
 	std::cout << "After:   ";
 	pm.printVec(MAX_PRINT);
@@ -68,7 +68,7 @@ void	sort(PmergeMe &pm)
 	start = std::clock();
 	pm.sortLst();
 	end = std::clock();
-	durationUs = 1e6 * (end - start) / (double) CLOCKS_PER_SEC;
+	durationUs = end - start;
 	std::cout << "Time to process a range of " << pm.getLst().size() << " elements with std::list   : ";
 	std::cout << durationUs << " us" << std::endl;
 }
