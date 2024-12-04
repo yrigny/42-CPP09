@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 21:53:01 by yrigny            #+#    #+#             */
-/*   Updated: 2024/12/03 19:08:32 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/12/04 14:33:02 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <list>
 # include <vector>
 # include <algorithm>
+# define MAX_PRINT 15
 
 typedef unsigned int			uint;
 typedef std::pair<uint, uint>	pair;
@@ -53,8 +54,8 @@ class PmergeMe
 		void	sortLst();
 		void	printVec(size_t maxSize);
 		void	printLst(size_t maxSize);
-		vec		getVec() const;
-		lst		getLst() const;
+		const vec&	getVec();
+		const lst&	getLst();
 };
 
 #endif

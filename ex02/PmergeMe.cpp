@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 21:54:04 by yrigny            #+#    #+#             */
-/*   Updated: 2024/12/03 19:02:14 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/12/04 14:37:29 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ void	PmergeMe::formAscendingPairs()
 			_vecOfPair.push_back(pair(_vec[i], _vec[i + 1]));
 	}
 	// print vector of pair
-	for (size_t i = 0; i < _vecOfPair.size(); i++)
-		std::cout << "[" << _vecOfPair[i].first << " " << _vecOfPair[i].second << "] ";
-	std::cout << std::endl;
+	// for (size_t i = 0; i < _vecOfPair.size() && i < MAX_PRINT; i++)
+	// 	std::cout << "[" << _vecOfPair[i].first << " " << _vecOfPair[i].second << "] ";
+	// std::cout << std::endl;
 }
 
 vecPair	PmergeMe::sortAscendingPairsVec(vecPair vecOfPair)
@@ -112,6 +112,7 @@ vecPair	PmergeMe::sortAscendingPairsVec(vecPair vecOfPair)
 	}
 	while (j < right.size())
 	{
+		vecOfPair[k] = right[j];
 		j++;
 		k++;
 	}
@@ -146,7 +147,7 @@ void	PmergeMe::insertRestOfNum()
 			iEnd = _vecOfPair.size();
 		while (--iEnd >= iStart)
 		{
-			/* find the idx of target num's paired num */
+			/* find the position of target num's paired num */
 			vec::iterator it = std::find(_vec.begin(), _vec.end(), _vecOfPair[iEnd].second);
 			insertNumWithBinarySearch(_vecOfPair[iEnd].first, it - _vec.begin() - 1);
 		}
@@ -160,14 +161,20 @@ void	PmergeMe::insertRestOfNum()
 
 void	PmergeMe::insertNumWithBinarySearch(uint num, uint iMax)
 {
-	std::cout << "inserting " << num << " from 0 to " << iMax << std::endl;
-	printVec(iMax + 1);
+	// std::cout << "inserting " << num << " from position 0 to " << iMax << std::endl;
+	// printVec(iMax + 1);
  	uint	low = 0, high = iMax; // high index is inclusive
 	while (low < high)
 	{
 		uint mid = low + (high - low) / 2;
+		// std::cout << "low:" << low << ", high:" << high << ", mid:" << mid << std::endl;
 		if (num < _vec[mid])
-			high = mid - 1;
+		{
+			if (mid == 0)
+				high = 0;
+			else
+				high = mid - 1;
+		}
 		else
 			low = mid + 1;
 	}
@@ -182,9 +189,9 @@ void	PmergeMe::sortVec()
 	formAscendingPairs();
 	_vecOfPair = sortAscendingPairsVec(_vecOfPair);
 	// print vector of pair
-	for (size_t i = 0; i < _vecOfPair.size(); i++)
-		std::cout << "[" << _vecOfPair[i].first << " " << _vecOfPair[i].second << "] ";
-	std::cout << std::endl;
+	// for (size_t i = 0; i < _vecOfPair.size() && i < MAX_PRINT; i++)
+	// 	std::cout << "[" << _vecOfPair[i].first << " " << _vecOfPair[i].second << "] ";
+	// std::cout << std::endl;
 	insertFirstBatchOfNum();
 	insertRestOfNum();
 }
@@ -210,12 +217,12 @@ void	PmergeMe::sortLst()
 
 }
 
-vec		PmergeMe::getVec() const
+const vec&	PmergeMe::getVec()
 {
 	return _vec;
 }
 
-lst		PmergeMe::getLst() const
+const lst&	PmergeMe::getLst()
 {
 	return _lst;
 }

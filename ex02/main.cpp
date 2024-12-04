@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 21:54:23 by yrigny            #+#    #+#             */
-/*   Updated: 2024/12/03 17:57:06 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/12/04 14:42:37 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@
 #include <sstream>
 #include <ctime>
 #include "PmergeMe.hpp"
-#define MAX_PRINT 15
 
 bool	isUint(std::string str)
 {
 	std::stringstream ss(str);
-	uint i;
-	if (ss >> i && i <= UINT_MAX)
+	int i;
+	if (ss >> i && i > 0 && i <= INT_MAX)
 		return true;
 	std::cout << "Error: " << str << " is not an unsigned integer." << std::endl;
 	return false;
@@ -43,6 +42,10 @@ bool	isUnique(std::string str, vec sequence)
 	return false;
 }
 
+bool	isSortedVec(const std::vector<uint>& vec) {
+    return std::adjacent_find(vec.begin(), vec.end(), std::greater<uint>()) == vec.end();
+}
+
 void	sort(PmergeMe &pm)
 {
 	std::cout << "Before:  ";
@@ -58,7 +61,7 @@ void	sort(PmergeMe &pm)
 
 	std::cout << "After:   ";
 	pm.printVec(MAX_PRINT);
-	
+	std::cout << "Vec is sorted: " << isSortedVec(pm.getVec()) << std::endl;
 	std::cout << "Time to process a range of " << pm.getVec().size() << " elements with std::vector : ";
 	std::cout << durationUs << " us" << std::endl;
 
