@@ -6,12 +6,11 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:46:58 by yrigny            #+#    #+#             */
-/*   Updated: 2024/12/04 20:03:32 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/12/05 19:58:27 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
-
 
 void	PmergeMe::printLst(size_t maxSize)
 {
@@ -42,22 +41,10 @@ static lstIt	next(lstIt it)
 	return ++it;
 }
 
-static lstPairIt	at(lstPair& lst, uint target)
+static lstPairIt	locate(lstPair& lst, uint target)
 {
-	uint	lstSize = lst.size();
 	lstPairIt	it;
-	if (target > lstSize)
-		it = lst.end();
-	else if (target < lstSize / 2)
-	{
-		it = lst.begin();
-		while (target--) it++;
-	}
-	else
-	{
-		it = lst.end();
-		while (lstSize - target--) it--;
-	}
+	
 	return it;
 }
 
@@ -77,7 +64,56 @@ void	PmergeMe::formAscendingPairsLst()
 
 lstPair	PmergeMe::sortAscendingPairsLst(lstPair lstOfPair)
 {
+	uint	mid = lstOfPair.size() / 2 + lstOfPair.size() % 2;
+	lstPair	left(lstOfPair.begin(), locate(lstOfPair, mid));
+	lstPair	right(locate(lstOfPair, mid), lstOfPair.end());
+	// print left lst of pair
+	for (lstPairIt it = left.begin(); it != left.end(); it++)
+		std::cout << "[" << it->first << " " << it->second << "] ";
+	std::cout << std::endl;
+	// print right lst of pair
+	for (lstPairIt it = right.begin(); it != right.end(); it++)
+		std::cout << "[" << it->first << " " << it->second << "] ";
+	std::cout << std::endl;
 	
+	if (lstOfPair.size() == 1)
+		return lstOfPair;
+	
+	left = sortAscendingPairsLst(left);
+	right = sortAscendingPairsLst(right);
+	uint	i = 0; // index to iterate through pairs list "left"
+	uint	j = 0; // index to iterate through pairs list "right"
+	uint	k = 0; // index of the sorted pairs list
+	while (i < left.size() && j < right.size())
+	{
+		std::cout << "i = " << i << ", j = " << j << std::endl;
+		uint	a = locate(left, i)->second;
+		uint	b = locate(right,j)->second;
+		if (a < b)
+		{
+			*locate(lstOfPair, k) = *locate(left, i);
+			i++;
+		}
+		else
+		{
+			*locate(lstOfPair, k) = *locate(right, j);
+			j++;
+		}
+		k++;
+	}
+	while (i < left.size())
+	{
+		*locate(lstOfPair, k) = *locate(left, i);
+		i++;
+		k++;
+	}
+	while (j < right.size())
+	{
+		*locate(lstOfPair, k) = *locate(right, j);
+		j++;
+		k++;
+	}
+	return lstOfPair;
 }
 
 void	PmergeMe::sortLst()
@@ -91,6 +127,11 @@ void	PmergeMe::sortLst()
 	std::cout << std::endl;
 
 	_lstOfPair = sortAscendingPairsLst(_lstOfPair);
+	// print lst of pair
+	for (lstPairIt it = _lstOfPair.begin(); it != _lstOfPair.end(); it++)
+		std::cout << "[" << it->first << " " << it->second << "] ";
+	std::cout << std::endl;
+	
 	// insertFirstBatchOfNum();
 	// insertRestOfNum();
 }
