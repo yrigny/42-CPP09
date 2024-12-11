@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 21:53:01 by yrigny            #+#    #+#             */
-/*   Updated: 2024/12/04 20:02:41 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/12/11 18:00:19 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <list>
 # include <vector>
 # include <algorithm>
-# define MAX_PRINT 15
+# define MAX_PRINT 10
 
 typedef unsigned int			uint;
 typedef std::pair<uint, uint>	pair;
@@ -47,9 +47,9 @@ class PmergeMe
 
 		void	formAscendingPairsLst();
 		lstPair	sortAscendingPairsLst(lstPair lstOfPair);
-		// void	insertFirstBatchOfNumToLst();
-		// void	insertRestOfNumToLst();
-		// void	insertNumToLstWithBinarySearch(uint num, uint iMax);
+		void	insertFirstBatchOfNumToLst();
+		void	insertRestOfNumToLst();
+		void	insertNumToLstWithBinarySearch(uint num, uint iMax);
 
 	public:
 

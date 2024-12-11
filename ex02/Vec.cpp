@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:45:25 by yrigny            #+#    #+#             */
-/*   Updated: 2024/12/04 18:56:14 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/12/11 17:58:32 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	PmergeMe::insertRestOfNum()
 			break;
 	}
 	if (_lastVecElement)
-		insertNumWithBinarySearch((_lastVecElement), _vec.size() - 1);
+		insertNumWithBinarySearch(_lastVecElement, _vec.size() - 1);
 }
 
 void	PmergeMe::insertNumWithBinarySearch(uint num, uint iMax)

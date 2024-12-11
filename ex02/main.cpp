@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 21:54:23 by yrigny            #+#    #+#             */
-/*   Updated: 2024/12/04 18:42:10 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/12/11 18:09:08 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <sstream>
 #include <ctime>
 #include "PmergeMe.hpp"
+#define CLR "\e[32m"
+#define NONE "\e[0m"
 
 bool	isUint(std::string str)
 {
@@ -42,13 +44,19 @@ bool	isUnique(std::string str, vec sequence)
 	return false;
 }
 
-bool	isSortedVec(const std::vector<uint>& vec) {
+bool	isSortedVec(const vec& vec)
+{
     return std::adjacent_find(vec.begin(), vec.end(), std::greater<uint>()) == vec.end();
+}
+
+bool	isSortedLst(const lst& lst)
+{
+	return std::adjacent_find(lst.begin(), lst.end(), std::greater<uint>()) == lst.end();
 }
 
 void	sort(PmergeMe &pm)
 {
-	std::cout << "Before:  ";
+	std::cout << CLR"Before:  " NONE;
 	pm.printVec(MAX_PRINT);
 
 	std::clock_t start, end;
@@ -59,18 +67,22 @@ void	sort(PmergeMe &pm)
 	end = std::clock();
 	durationUs = end - start;
 
-	std::cout << "After:   ";
+	std::cout << CLR "After:   " NONE;
 	pm.printVec(MAX_PRINT);
-	std::cout << "Vec is sorted: " << isSortedVec(pm.getVec()) << std::endl;
-	std::cout << "Time to process a range of " << pm.getVec().size() << " elements with std::vector : ";
+	std::cout << CLR "Time to process a range of " << pm.getVec().size() << " elements with std::vector : " NONE;
 	std::cout << durationUs << " us" << std::endl;
 
 	start = std::clock();
 	pm.sortLst();
 	end = std::clock();
 	durationUs = end - start;
-	std::cout << "Time to process a range of " << pm.getLst().size() << " elements with std::list   : ";
+	std::cout << CLR "Time to process a range of " << pm.getLst().size() << " elements with std::list   : " NONE;
 	std::cout << durationUs << " us" << std::endl;
+
+	std::cout << std::boolalpha;
+	std::cout << "Vec is sorted: " << isSortedVec(pm.getVec()) << std::endl;
+	std::cout << "Lst is sorted: " << isSortedLst(pm.getLst()) << std::endl;
+	std::cout << std::noboolalpha;
 }
 
 int main(int ac, char **av)
