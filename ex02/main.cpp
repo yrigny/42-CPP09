@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 21:54:23 by yrigny            #+#    #+#             */
-/*   Updated: 2024/12/11 18:09:08 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/12/13 00:19:39 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ bool	isUnique(std::string str, vec sequence)
 	size_t	i = 0;
 	if (sequence.size() == 0)
 		return true;
-	while (i < sequence.size() && sequence[i++] != n)
-		;
+	while (i < sequence.size() && sequence[i] != n)
+		i++;
 	if (i == sequence.size())
 		return true;
 	std::cout << "Error: " << str << " is not unique." << std::endl;
